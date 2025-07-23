@@ -1,7 +1,8 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:course_bloc/presentation/screens/screens.dart';
 
-final appRouter = GoRouter(
+final _publicRouter = GoRouter(
   routes: [
     GoRoute(path: '/', builder: (context, state) => const HomeScreen()),
 
@@ -36,3 +37,9 @@ final appRouter = GoRouter(
     ),
   ],
 );
+
+class RouterSimpleCubit extends Cubit<GoRouter> {
+  RouterSimpleCubit() : super(_publicRouter);
+  void goHome() => state.go('/');
+  void goBack() => state.pop();
+}

@@ -17,6 +17,7 @@ class BlocProviders extends StatelessWidget {
         BlocProvider(create: (context) => UsernameCubit()),
         BlocProvider(create: (context) => RouterSimpleCubit()),
         BlocProvider(create: (context) => CounterCubit()),
+        BlocProvider(create: (context) => ThemeCubit()),
       ],
       child: const MainApp(),
     );
@@ -29,10 +30,11 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final routerCubit = context.watch<RouterSimpleCubit>();
+    final themeCubit = context.watch<ThemeCubit>();
     return MaterialApp.router(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
-      theme: AppTheme(isDarkMode: false).getTheme(),
+      theme: AppTheme(isDarkMode: themeCubit.state.isDarkMode).getTheme(),
       routerConfig: routerCubit.state,
     );
   }

@@ -1,3 +1,4 @@
+import 'package:course_bloc/config/helpers/pokemon_information.dart';
 import 'package:get_it/get_it.dart';
 
 import 'package:course_bloc/config/router/app_router.dart';
@@ -11,5 +12,7 @@ void serviceLocatorInit() {
   getIt.registerSingleton<ThemeCubit>(ThemeCubit());
   getIt.registerSingleton<RouterSimpleCubit>(RouterSimpleCubit());
   getIt.registerSingleton<GuestsBloc>(GuestsBloc());
-  getIt.registerSingleton<PokemonBloc>(PokemonBloc());
+  getIt.registerSingleton<PokemonBloc>(
+    PokemonBloc(fetchPokemonName: PokemonInformation.getPokemonInformation),
+  );
 }

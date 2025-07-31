@@ -11,4 +11,5 @@ void serviceLocatorInit() {
   getIt.registerSingleton<ThemeCubit>(ThemeCubit());
   getIt.registerSingleton<RouterSimpleCubit>(RouterSimpleCubit());
   getIt.registerSingleton<GuestsBloc>(GuestsBloc());
+  getIt.registerSingleton<PokemonBloc>(PokemonBloc());
 }

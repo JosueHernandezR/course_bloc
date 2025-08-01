@@ -28,5 +28,7 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>NSLocationUsageDescription</key>
+	<string>Esta aplicación necesita acceso a tu ubicación para mostrarte información relevante basada en tu posición actual.</string>
 </dict>
 </plist>

@@ -15,4 +15,8 @@ void serviceLocatorInit() {
   getIt.registerSingleton<PokemonBloc>(
     PokemonBloc(fetchPokemonName: PokemonInformation.getPokemonInformation),
   );
+  // Se debe crear el cubit y luego llamar al metodo watchUserLocation
+  getIt.registerSingleton<GeolocationCubit>(
+    GeolocationCubit()..watchUserLocation(),
+  );
 }

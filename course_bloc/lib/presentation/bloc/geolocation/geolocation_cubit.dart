@@ -6,7 +6,11 @@ import 'package:meta/meta.dart';
 part 'geolocation_state.dart';
 
 class GeolocationCubit extends Cubit<GeolocationState> {
-  GeolocationCubit() : super(const GeolocationState());
+  final void Function((double lat, double lng) location)?
+  onNewUserLocationCallback;
+
+  GeolocationCubit({this.onNewUserLocationCallback})
+    : super(const GeolocationState());
 
   Future<void> checkStatus() async {
     final serviceEnabled = await Geolocator.isLocationServiceEnabled();
@@ -41,9 +45,8 @@ class GeolocationCubit extends Cubit<GeolocationState> {
     ) {
       // Aqui ya sabemos que el usuario tiene permisos y el servicio esta activo
       final newLocation = (position.latitude, position.longitude);
-      if (newLocation != state.location) {
-        emit(state.copyWith(location: newLocation));
-      }
+      emit(state.copyWith(location: newLocation));
+      onNewUserLocationCallback?.call(newLocation);
     });
   }
 }
